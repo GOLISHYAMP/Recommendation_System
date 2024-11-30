@@ -1,6 +1,7 @@
 numpy
 pandas
+nltk
 scikit-learn
+gensim
+tqdm 
 tensorflow
-dvc
-mlflow
