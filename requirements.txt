@@ -6,3 +6,8 @@ gensim
 tqdm 
 tensorflow
 streamlit
+streamlit_lottie
+requests
+Pillow
+protobuf
+watchdog

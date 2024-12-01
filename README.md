@@ -1,6 +1,7 @@
 # Recommendation_System
 
 for emoji go to website https://www.webfx.com/tools/emoji-cheat-sheet/
+:mobile_phone:
 
 to run the code run the command streamlit run app.py
 
