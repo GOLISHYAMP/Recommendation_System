@@ -33,62 +33,62 @@ st.set_page_config(page_title="PickYourPhone", page_icon=":mobile_phone:", layou
 
 
 
-# def load_lottiefile(filepath):
-#     import json
-#     try:
-#         with open(filepath, "r", encoding="utf-8") as file:
-#             return json.load(file)
-#     except Exception as e:
-#         print(f"Error loading file: {e}")
-#         return None
+def load_lottiefile(filepath):
+    import json
+    try:
+        with open(filepath, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except Exception as e:
+        print(f"Error loading file: {e}")
+        return None
 
-# lottie_coding = load_lottiefile(os.path.join(os.getcwd(), "Animation - 1733047553544.json"))
-
-
-# # Use local CSS
-# def local_css(file_name):
-#     with open(file_name) as f:
-#         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+lottie_coding = load_lottiefile(os.path.join(os.getcwd(), "Animation - 1733047553544.json"))
 
 
-# local_css("style/style.css")
+# Use local CSS
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# # ---- LOAD ASSETS ----
-# # lottie_coding = load_lottieurl("https://lottie.host/b5066c54-82de-4c32-93e0-046f9c4a17c9/gUv6XtilSp.lottie")
-# # img_contact_form = Image.open("images/yt_contact_form.png")
-# # img_lottie_animation = Image.open("images/yt_lottie_animation.png")
-# img_contact_form = load_lottiefile(os.path.join(os.getcwd(), "Animation - 1733047553544.json"))
-# img_lottie_animation = load_lottiefile(os.path.join(os.getcwd(), "Animation - 1733047553544.json"))
-# # ---- HEADER SECTION ----
-# with st.container():
-#     st.subheader("Hi, I am Sven :wave:")
-#     st.title("A Data Analyst From Germany")
-#     st.write(
-#         "I am passionate about finding ways to use Python and VBA to be more efficient and effective in business settings."
-#     )
-#     st.write("[Learn More >](https://pythonandvba.com)")
+
+local_css("style/style.css")
+
+# ---- LOAD ASSETS ----
+# lottie_coding = load_lottieurl("https://lottie.host/b5066c54-82de-4c32-93e0-046f9c4a17c9/gUv6XtilSp.lottie")
+# img_contact_form = Image.open("images/yt_contact_form.png")
+# img_lottie_animation = Image.open("images/yt_lottie_animation.png")
+img_contact_form = load_lottiefile(os.path.join(os.getcwd(), "Animation - 1733047553544.json"))
+img_lottie_animation = load_lottiefile(os.path.join(os.getcwd(), "Animation - 1733047553544.json"))
+# ---- HEADER SECTION ----
+with st.container():
+    st.subheader("Hi, I am Sven :wave:")
+    st.title("A Data Analyst From Germany")
+    st.write(
+        "I am passionate about finding ways to use Python and VBA to be more efficient and effective in business settings."
+    )
+    st.write("[Learn More >](https://pythonandvba.com)")
  
-# # ---- WHAT this project does explaination ----
-# with st.container():
-#     st.write("---")
-#     left_column, right_column = st.columns(2)
-#     with left_column:
-#         st.header("What I do")
-#         st.write("##")
-#         st.write(
-#             """
-#             On my YouTube channel I am creating tutorials for people who:
-#             - are looking for a way to leverage the power of Python in their day-to-day work.
-#             - are struggling with repetitive tasks in Excel and are looking for a way to use Python and VBA.
-#             - want to learn Data Analysis & Data Science to perform meaningful and impactful analyses.
-#             - are working with Excel and found themselves thinking - "there has to be a better way."
+# ---- WHAT this project does explaination ----
+with st.container():
+    st.write("---")
+    left_column, right_column = st.columns(2)
+    with left_column:
+        st.header("What I do")
+        st.write("##")
+        st.write(
+            """
+            On my YouTube channel I am creating tutorials for people who:
+            - are looking for a way to leverage the power of Python in their day-to-day work.
+            - are struggling with repetitive tasks in Excel and are looking for a way to use Python and VBA.
+            - want to learn Data Analysis & Data Science to perform meaningful and impactful analyses.
+            - are working with Excel and found themselves thinking - "there has to be a better way."
 
-#             If this sounds interesting to you, consider subscribing and turning on the notifications, so you don’t miss any content.
-#             """
-#         )
-#         st.write("[YouTube Channel >](https://youtube.com/c/CodingIsFun)")
-#     with right_column:
-#         st_lottie(lottie_coding, height=300, key="coding")
+            If this sounds interesting to you, consider subscribing and turning on the notifications, so you don’t miss any content.
+            """
+        )
+        st.write("[YouTube Channel >](https://youtube.com/c/CodingIsFun)")
+    with right_column:
+        st_lottie(lottie_coding, height=300, key="coding")
 
 # ---- Recommendations ----
 import pickle
@@ -111,33 +111,40 @@ st.write("##")
 
 # Set the title
 st.title("Search for your mobile")
-
+import time
 # Add a text input with a search icon as a placeholder
-input_string = st.text_input("Search", placeholder="🔍 Type your query here...")
+input_string = st.text_input("Search", placeholder="🔍 Type your query here...", key='input_string')
 
 similar_10_mobiles = None
 # Function to handle card selection
 def handle_card_selection(card_text):
     global similar_10_mobiles, input_string
-    st.session_state.selected_card = card_text
+    # st.session_state.selected_card = card_text
     print(card_text)
+    # input_string = 
     similar_10_mobiles = recommend(card_text)
+    clear_search()
+    # Initialize session state
+    if "input_string" not in st.session_state:
+        st.session_state.input_string = ""
+    st.session_state.input_string = card_text
     st.rerun()
+
+# Function to clear the input field
+def clear_search():
+    del st.session_state.input_string
 
 # Initialize session state
 if "input_string" not in st.session_state:
     st.session_state.input_string = ""
-if "selected_card" not in st.session_state:
-    st.session_state.selected_card = None
 
 
 # Display the entered search query
-if input_string:
-    if st.session_state.selected_card:
-        input_string = st.session_state.selected_card
-    st.session_state.input_string = input_string
+if st.session_state.input_string:
     st.write(f"You searched for: {st.session_state.input_string}")
-
+    if st.session_state.input_string in list(df['name']):
+        st.write(df.loc[df['name'] == st.session_state.input_string, 'corpus'].iloc[0])
+    st.header("Recommendations")
     input_string = st.session_state.input_string.lower()
     input_string = input_string.split()
     input_string = [lemmatizer.lemmatize(word) for word in input_string]
@@ -168,22 +175,8 @@ if input_string:
                 st.write(
                     df['corpus'].iloc[i[0]]
                 )
-          
-if st.session_state.selected_card:
-    similar_10_mobiles = recommend(st.session_state.selected_card)
-    with st.container():
-        for i in similar_10_mobiles:
-            title_column, text_column = st.columns((1, 2))
-            with title_column:
-                # st.title()
-                if st.button(df['name'].iloc[i[0]]):
-                    handle_card_selection(df['name'].iloc[i[0]])
-            with text_column:
-                st.subheader(df['ratings'].iloc[i[0]], df['price'].iloc[i[0]])
-                st.write(
-                    df['corpus'].iloc[i[0]]
-                )
-# ---- CONTACT ----
+          #########################################
+
 # with st.container():
 #     st.write("---")
 #     st.header("Get In Touch With Me!")
@@ -205,17 +198,4 @@ if st.session_state.selected_card:
 #     with right_column:
 #         st.empty()
 
-###############################################################
-# st.write("Most objects") # df, err, func, keras!
-# # st.write_stream(my_generator)
-# # st.write_stream(my_llm_stream)
 
-# st.text("Fixed width text")
-# st.markdown("_Markdown_")
-# st.title("My title")
-# st.header("My header")
-# st.subheader("My sub")
-
-# st.json({"foo":"bar","fu":"ba"})
-# st.metric("My metric", 42, 2)
-#####################################################################
