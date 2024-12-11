@@ -6,6 +6,9 @@ import os
 from io import BytesIO
 
 import nltk
+
+# Ensure the 'wordnet' resource is downloaded
+nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
 lemmatizer=WordNetLemmatizer()
 from nltk import sent_tokenize, word_tokenize
