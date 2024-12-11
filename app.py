@@ -42,8 +42,11 @@ def load_lottiefile(filepath):
         print(f"Error loading file: {e}")
         return None
 
-lottie_coding = load_lottiefile(os.path.join(os.getcwd(), "Animation - 1733047553544.json"))
-
+# ---- LOAD ASSETS ----
+sub_dir = os.path.join(os.getcwd(), 'animation_files')
+phoneThinkingANIMI = load_lottiefile(os.path.join(sub_dir ,"Animation - 1733853644589.json"))
+phones = load_lottiefile(os.path.join(sub_dir ,"Animation - 1733047055915.json"))
+coding = load_lottiefile(os.path.join(sub_dir ,"Animation - 1733854130756.json"))
 
 # Use local CSS
 def local_css(file_name):
@@ -53,42 +56,41 @@ def local_css(file_name):
 
 local_css("style/style.css")
 
-# ---- LOAD ASSETS ----
-# lottie_coding = load_lottieurl("https://lottie.host/b5066c54-82de-4c32-93e0-046f9c4a17c9/gUv6XtilSp.lottie")
-# img_contact_form = Image.open("images/yt_contact_form.png")
-# img_lottie_animation = Image.open("images/yt_lottie_animation.png")
-img_contact_form = load_lottiefile(os.path.join(os.getcwd(), "Animation - 1733047553544.json"))
-img_lottie_animation = load_lottiefile(os.path.join(os.getcwd(), "Animation - 1733047553544.json"))
+
 # ---- HEADER SECTION ----
 with st.container():
-    st.subheader("Hi, I am Sven :wave:")
-    st.title("A Data Analyst From Germany")
-    st.write(
-        "I am passionate about finding ways to use Python and VBA to be more efficient and effective in business settings."
-    )
-    st.write("[Learn More >](https://pythonandvba.com)")
- 
+    st.header("Hi, I am Shyam Goli :wave:")
+    left_column, right_column = st.columns(2)
+    with left_column:
+        st_lottie(coding, height=300, key="coding")
+    with right_column:
+        st.title("A Python AI/ML engineer from India")
+        st.write("I am a Python enthusiast with a keen interest in machine learning and artificial intelligence. I've developed several projects leveraging technologies such as ML, NLP, Computer Vision and Gen AI. In addition to my backend expertise, My programming experience spans C, C++, and Python. I currently work at Capgemini in Mumbai as an Senior Associate Software Engineer, specializing in Python and AI/ML and started my journey of study about Gen AI. I did some Google Data Analytics certifications. I have a passion for exploring emerging technologies related to AI and continuously updating my skill set.")
+        st.write("[LinkedIn Profile >](https://www.linkedin.com/in/shyam-goli-723657176/)")
+    
+
 # ---- WHAT this project does explaination ----
 with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
     with left_column:
-        st.header("What I do")
+        st.header("About project")
         st.write("##")
         st.write(
             """
-            On my YouTube channel I am creating tutorials for people who:
-            - are looking for a way to leverage the power of Python in their day-to-day work.
-            - are struggling with repetitive tasks in Excel and are looking for a way to use Python and VBA.
-            - want to learn Data Analysis & Data Science to perform meaningful and impactful analyses.
-            - are working with Excel and found themselves thinking - "there has to be a better way."
+            I developed a recommendation system for mobile phones utilizing NLP techniques.
+            - The system employs Word2Vec to generate word embeddings and cosine similarity to identify the most relevant recommendations.
+            - A user-friendly GUI was created using Streamlit, allowing users to explore personalized suggestions effectively. 
+            - This system helps users quickly find mobile phones that match their preferences,saving time and enhancing decision-making by providing tailored recommendations based on their requirements.
+            - This recommendation system can be upgraded by using updated embedding methods.
 
             If this sounds interesting to you, consider subscribing and turning on the notifications, so you don’t miss any content.
             """
         )
-        st.write("[YouTube Channel >](https://youtube.com/c/CodingIsFun)")
+        st.write("[Github Code Repo >](https://github.com/GOLISHYAMP/Recommendation_System.git)")
     with right_column:
-        st_lottie(lottie_coding, height=300, key="coding")
+        st_lottie(phoneThinkingANIMI, height=300, key="thinking")
+        st_lottie(phones, height=300, key="phones")
 
 # ---- Recommendations ----
 import pickle
@@ -120,7 +122,7 @@ similar_10_mobiles = None
 def handle_card_selection(card_text):
     global similar_10_mobiles, input_string
     # st.session_state.selected_card = card_text
-    print(card_text)
+    # print(card_text)
     # input_string = 
     similar_10_mobiles = recommend(card_text)
     clear_search()
