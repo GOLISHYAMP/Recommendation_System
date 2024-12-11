@@ -1,11 +1,13 @@
+Python==3.12.5
 numpy
 pandas
 nltk
 scikit-learn
-gensim
+scipy==1.13.1
+gensim==4.3.3
 tqdm 
 tensorflow
-streamlit
+streamlit==1.40.2
 streamlit_lottie
 requests
 Pillow
