@@ -9,6 +9,7 @@ import nltk
 
 # Ensure the 'wordnet' resource is downloaded
 nltk.download('wordnet')
+nltk.download('punkt_tab')
 from nltk.stem import WordNetLemmatizer
 lemmatizer=WordNetLemmatizer()
 from nltk import sent_tokenize, word_tokenize
