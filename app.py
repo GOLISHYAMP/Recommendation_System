@@ -12,9 +12,9 @@ from nltk import sent_tokenize, word_tokenize
 import numpy as np
 import pandas as pd
 
-base_path = os.getcwd()
+# base_path = os.getcwd()
 sub_path = 'data'
-dataset_path = os.path.join(base_path, sub_path, 'mobile_recommendation_system_dataset.csv')
+dataset_path = os.path.join(sub_path, 'mobile_recommendation_system_dataset.csv')
 
 # import df
 df = pd.read_csv(dataset_path,index_col=False)
@@ -95,13 +95,15 @@ with st.container():
 # ---- Recommendations ----
 import pickle
 # Load the saved model
-with open(r'src\model\similarity.pkl', 'rb') as file:
+model_path = 'src'
+model_subpath= 'model'
+with open(os.path.join(model_path, model_subpath, 'similarity.pkl'), 'rb') as file:
     similarity = pickle.load(file)
 
-with open(r'src\model\name_model.pkl', 'rb') as file:
+with open(os.path.join(model_path, model_subpath, 'name_model.pkl'), 'rb') as file:
     name_model = pickle.load(file)
 
-with open(r'src\model\name_vectors.pkl', 'rb') as file:
+with open(os.path.join(model_path, model_subpath, 'name_vectors.pkl'), 'rb') as file:
     name_vectors = pickle.load(file)
 
 
